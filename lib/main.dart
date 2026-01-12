@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'home.dart'; // 👈 import home page
+import 'signUp.dart'; // ✅ FIXED
+import 'home.dart';
 
 void main() {
   runApp(const MyApp());
@@ -30,27 +31,18 @@ class _LoginPageState extends State<LoginPage> {
 
   void login() {
     if (emailController.text == "admin@gmail.com" &&
-        passwordController.text == "12345") {
+        (passwordController.text == "12345" ||
+         passwordController.text == "1234")) {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => HomePage(), // ✅ FIXED
+          builder: (context) => HomePage(),
         ),
       );
-    } 
- else if (emailController.text == "admin@gmail.com" &&
-        passwordController.text == "1234") {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => HomePage(), // ✅ FIXED
-        ),
-      );
-    } 
-    else {
+    } else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text("Invalid Email or Password ❌"),
+          content: Text("Invalid Email or Password"),
           backgroundColor: Colors.red,
         ),
       );
@@ -78,8 +70,6 @@ class _LoginPageState extends State<LoginPage> {
                 decoration: const InputDecoration(
                   labelText: "Email",
                   border: OutlineInputBorder(),
-                  contentPadding:
-                      EdgeInsets.symmetric(vertical: 14, horizontal: 12),
                 ),
               ),
             ),
@@ -96,8 +86,6 @@ class _LoginPageState extends State<LoginPage> {
                 decoration: const InputDecoration(
                   labelText: "Password",
                   border: OutlineInputBorder(),
-                  contentPadding:
-                      EdgeInsets.symmetric(vertical: 14, horizontal: 12),
                 ),
               ),
             ),
@@ -115,12 +103,30 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 child: const Text(
                   "Login",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 18,
-                  ),
+                  style: TextStyle(color: Colors.white, fontSize: 18),
                 ),
               ),
+            ),
+
+            const SizedBox(height: 10),
+
+            // SIGN UP LINK
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text("Don't have an account?"),
+                TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => SignUpPage(), // ✅ FIXED
+                      ),
+                    );
+                  },
+                  child: const Text("Sign Up"),
+                ),
+              ],
             ),
           ],
         ),
