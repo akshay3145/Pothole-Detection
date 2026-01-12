@@ -30,7 +30,7 @@ class _LoginPageState extends State<LoginPage> {
 
   void login() {
     if (emailController.text == "admin@gmail.com" &&
-        passwordController.text == "1234") {
+        passwordController.text == "12345") {
       Navigator.push(
         context,
         MaterialPageRoute(
