@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'signUp.dart'; // ✅ FIXED
 import 'home.dart';
+import 'signUp.dart';
 
 void main() {
   runApp(const MyApp());
@@ -30,14 +30,14 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController passwordController = TextEditingController();
 
   void login() {
-    if (emailController.text == "admin@gmail.com" &&
-        (passwordController.text == "12345" ||
-         passwordController.text == "1234")) {
-      Navigator.push(
+    String email = emailController.text.trim();
+    String password = passwordController.text.trim();
+
+    if (email == "admin@gmail.com" &&
+        (password == "1234" || password == "12345")) {
+      Navigator.pushReplacement(
         context,
-        MaterialPageRoute(
-          builder: (context) => HomePage(),
-        ),
+        MaterialPageRoute(builder: (context) => HomePage()),
       );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -60,26 +60,21 @@ class _LoginPageState extends State<LoginPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // EMAIL
             SizedBox(
-              height: 55,
               width: 250,
+              height: 55,
               child: TextField(
                 controller: emailController,
-                keyboardType: TextInputType.emailAddress,
                 decoration: const InputDecoration(
                   labelText: "Email",
                   border: OutlineInputBorder(),
                 ),
               ),
             ),
-
             const SizedBox(height: 15),
-
-            // PASSWORD
             SizedBox(
-              height: 55,
               width: 250,
+              height: 55,
               child: TextField(
                 controller: passwordController,
                 obscureText: true,
@@ -89,28 +84,19 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
             ),
-
             const SizedBox(height: 25),
-
-            // LOGIN BUTTON
             SizedBox(
               width: 300,
               height: 45,
               child: ElevatedButton(
                 onPressed: login,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue,
-                ),
                 child: const Text(
                   "Login",
-                  style: TextStyle(color: Colors.white, fontSize: 18),
+                  style: TextStyle(fontSize: 18),
                 ),
               ),
             ),
-
             const SizedBox(height: 10),
-
-            // SIGN UP LINK
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -120,7 +106,7 @@ class _LoginPageState extends State<LoginPage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => SignUpPage(), // ✅ FIXED
+                        builder: (context) => SignUpPage(),
                       ),
                     );
                   },
