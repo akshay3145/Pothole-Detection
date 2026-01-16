@@ -74,7 +74,7 @@ class _SignUpPageState extends State<SignUpPage> {
               // Name Field
               _buildTextField(nameController, "Full Name", Icons.person, false),
               const SizedBox(
-                width: 250,
+                width: 300,
                 height: 55,
               ),
 
