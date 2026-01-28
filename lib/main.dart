@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'home.dart';
 import 'signUp.dart';
+import 'admin.dart';
 
 void main() {
   runApp(const MyApp());
@@ -40,7 +41,7 @@ class _LoginPageState extends State<LoginPage> {
         (password == "1234" || password == "12345")) {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => HomePage()),
+        MaterialPageRoute(builder: (context) => const AdminPage()),
       );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -55,10 +56,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Login Page"),
-        centerTitle: true,
-      ),
+      appBar: AppBar(title: const Text("Login Page"), centerTitle: true),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -111,10 +109,7 @@ class _LoginPageState extends State<LoginPage> {
               height: 45,
               child: ElevatedButton(
                 onPressed: login,
-                child: const Text(
-                  "Login",
-                  style: TextStyle(fontSize: 18),
-                ),
+                child: const Text("Login", style: TextStyle(fontSize: 18)),
               ),
             ),
 
